@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ori Kopitz — VFX Artist &amp; Compositor</title>
+<meta name="description" content="Ori Kopitz is a VFX artist, compositor and cinematic AI creator specialising in invisible VFX, pyro, particles, vellum and fluid simulations in SideFX Houdini and Adobe After Effects." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Archivo:ital,wght@0,400;0,500;0,600;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- LOADER (brief, premium fade-out on first paint)                -->
+<!-- ============================================================ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <span class="loader-mark">OK</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- HEADER — fixed global navigation                              -->
+<!-- ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="brand" id="brandLink" aria-label="Ori Kopitz — back to top">
+      <img src="Logo.png" alt="Ori Kopitz logo" class="brand-logo" />
+      <span class="brand-name">ori kopitz</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#features" class="nav-link" data-scroll-link="features">Work</a>
+      <button type="button" class="nav-link nav-link--btn" id="showreelNavBtn">Showreel</button>
+      <button type="button" class="nav-link nav-link--btn" id="infoNavBtn">Info</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN                                                          -->
+<!-- ============================================================ -->
+<main id="top">
+
+  <!-- ============================================================ -->
+  <!-- HERO — full-screen silent showreel loop                      -->
+  <!-- ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-video-wrap">
+      <iframe
+        class="hero-video"
+        src="https://player.vimeo.com/video/1204243739?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        title="Ori Kopitz — main VFX showreel background loop"
+      ></iframe>
+      <div class="hero-scrim"></div>
+    </div>
+
+    <button type="button" class="scroll-cue" id="scrollCueBtn" aria-label="Scroll to work">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4V20M12 20L5 13M12 20L19 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FEATURES — central axis + 18 alternating project cards       -->
+  <!-- ============================================================ -->
+  <section class="features" id="features">
+    <h2 class="features-title">Features</h2>
+
+    <div class="features-grid" id="featuresGrid">
+      <div class="axis-column" id="axisColumn" aria-hidden="true">
+        <div class="axis-fill" id="axisFill"></div>
+      </div>
+      <div class="axis-ticks" id="axisTicks" aria-hidden="true"></div>
+
+      <!-- PROJECT_CARDS_START -->
+
+      <article class="project-card" data-index="01" data-title="Dibalo" data-vimeo="1204244124">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204244124?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">01</span>
+          <h3 class="project-name">Dibalo</h3>
+        </div>
+        <template class="project-description">
+          <p>A dark fantasy cinematic shot heavily inspired by the official Diablo IV cinematic trailer. This project was created during the early stages of my Houdini studies, serving as a foundational exploration of layout, dramatic lighting, and particle workflows.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Layout &amp; Set Dressing:</strong> Sourced downloaded 3D assets, arranged them within the environment, and established the cinematic framing.</li>
+            <li><strong>Animation Integration:</strong> Applied and retargeted Mixamo animations to bring some characters to life.</li>
+            <li><strong>Particle Simulations:</strong> Designed and executed custom particle effects inside SideFX Houdini to match the reference.</li>
+            <li><strong>Lighting &amp; Look Dev:</strong> Created the ominous, high-contrast lighting setup to capture the grim, stylized tone of the reference and added atmospheric fog.</li>
+            <li><strong>Compositing:</strong> Finalized all rendering passes, atmospheric blending, and color grading inside Adobe After Effects.</li>
+          </ul>
+          <p class="credit-line">Inspired by the Diablo IV Cinematic Trailer (Blizzard Entertainment).</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="02" data-title="Fluid" data-vimeo="1204244061">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204244061?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">02</span>
+          <h3 class="project-name">Fluid</h3>
+        </div>
+        <template class="project-description">
+          <p>A personal FX project focused on rigid body dynamics and fluid simulations, inspired by the "Singleton" project by Gravity. For this shot, I utilized downloaded assets, fractured the models, and scattered them within Houdini to create the balancing composition. I also customized the textures, specifically re-shading the barrel closest to the floor to better fit the scene's art direction.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Fracturing &amp; Layout:</strong> Prepared and fractured the geometry, and scattered the assets in Houdini.</li>
+            <li><strong>Fluid Simulation:</strong> Created and simulated the liquid dynamics inside Houdini.</li>
+            <li><strong>Lighting &amp; Rendering:</strong> Set up the look development and lighting rig within Houdini.</li>
+            <li><strong>Compositing:</strong> Finalized the integration, color grading, and look in Adobe After Effects.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by the Gravity Singleton Project.</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="03" data-title="Parkur" data-vimeo="1204245311">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204245311?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">03</span>
+          <h3 class="project-name">Parkur</h3>
+        </div>
+        <template class="project-description">
+          <p>A complex VFX shot blending 3D camera tracking, environment modeling, procedural particle dynamics, and AI-assisted video inpainting. The goal of this project was to achieve a seamless physical transition where a simulated grain entity organically inherits and continues the physical momentum of a real jumping subject.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Tracking &amp; Pipeline:</strong> Performed 3D camera tracking on the live-action footage and utilized Jonathan Bary's custom script to smoothly export camera and null data into SideFX Houdini.</li>
+            <li><strong>Environment Modeling &amp; Colliders:</strong> Modeled the concrete staircase and the flanking side walls within Houdini to act as precise collision geometry for the simulation.</li>
+            <li><strong>Vellum Grain Simulation:</strong> Replicated the subject using vellum grains. Applied a camera projection technique to map the original footage texture onto the geometry, configuring the simulation to realistically catch and continue the character's jumping trajectory.</li>
+            <li><strong>Lighting &amp; Rendering:</strong> Set up matching lighting inside Houdini to accurately replicate the overcast environment of the original plate.</li>
+            <li><strong>AI Inpainting (Clean Plate):</strong> Used Kling AI to cleanly erase the jumping person from the video background while keeping all other environmental elements completely identical and untouched.</li>
+            <li><strong>Compositing &amp; Asset Integration:</strong> Combined the original plate, AI clean plate, and Houdini renders inside Adobe After Effects. Integrated downloaded graffiti elements onto the walls, matching the tracked camera depth to make them look completely native to the original concrete surfaces.</li>
+          </ul>
+          <p class="credit-line">Reference and pipeline workflow inspired by the tutorial "Export After Effects Camera and Nulls to Houdini" by Jonathan Bary.</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects, Kling Ai</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="04" data-title="Car" data-vimeo="1204244416">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204244416?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">04</span>
+          <h3 class="project-name">Car</h3>
+        </div>
+        <template class="project-description">
+          <p>My first project exploring a hybrid workflow that blends traditional 3D production with generative AI tools. The project is heavily inspired by the "Between Places" cinematic car spec ad by Jacob Nordin.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Layout &amp; Camera Animation:</strong> Sourced the vehicle model, animated the camera in SideFX Houdini to match the reference framing, and generated an Ambient Occlusion (AO) pass.</li>
+            <li><strong>AI Generation &amp; Control (Magnific):</strong> Combined the clay render and the live-action video plate using Magnific. Leveraged precise prompting to texturize the vehicle and generate accurate environment shadows, while strictly preserving the original 3D proportions, scale, and perspective.</li>
+            <li><strong>Compositing:</strong> Blended all AI-generated passes, refined the vehicle integration, and finalized the color grading inside Adobe After Effects.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by "Between Places Cinematic Car Spec Ad" by Jacob Nordin.</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects, Magnific Ai</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="05" data-title="Church" data-vimeo="1204245113">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204245113?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">05</span>
+          <h3 class="project-name">Church</h3>
+        </div>
+        <template class="project-description">
+          <p>An invisible VFX shot transforming a peaceful live-action drone plate of a city and cathedral into a dramatic, cinematic warzone. The focus of this project was to achieve a seamless environmental enhancement where all added digital elements feel completely native to the original live-action footage.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Camera Tracking &amp; Matchmoving:</strong> Performed a precise camera track on the moving live-action plate to establish a solid 3D space for accurate asset placement.</li>
+            <li><strong>Element Integration &amp; Depth:</strong> Composited multiple stock footage elements, including massive smoke plumes, localized fires, and rising ash, carefully masking and rotoscoping them behind and around the cathedral structure to maintain a realistic sense of depth and scale.</li>
+            <li><strong>Asset Compositing:</strong> Integrated fighter jet assets into the sky, precisely matching their movement, speed, and motion blur to the tracked camera's perspective.</li>
+            <li><strong>Photorealistic Blending &amp; Color Grading:</strong> Focused on color matching, balancing black levels, and applying atmospheric perspective (haze and depth) within the compositing stage to ensure all added elements perfectly match the original lighting environment.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="06" data-title="Astronaut" data-vimeo="1204316146">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204316146?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">06</span>
+          <h3 class="project-name">Astronaut</h3>
+        </div>
+        <template class="project-description">
+          <p>My first project exploring chroma keying and green screen extraction techniques. Heavily inspired by the distinct cinematic style of "Blade Runner 2049," the goal of this project was to cleanly extract a green screen subject and seamlessly integrate them into an AI-cleared reference environment.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Chroma Keying &amp; Extraction:</strong> Extracted the astronaut subject from the original green screen footage, refining the matte edges and adjusting the scale to match the reference framing.</li>
+            <li><strong>AI Inpainting (Clean Plate):</strong> Utilized AI inpainting tools to cleanly remove the original character from the reference video, establishing a seamless background plate while fully preserving the dense, atmospheric environment.</li>
+            <li><strong>Matchmoving &amp; Tracking:</strong> Performed camera tracking within Adobe After Effects to precisely position the astronaut, locking the subject to the correct spatial coordinates of the plate.</li>
+            <li><strong>Color Matching &amp; Lookdev:</strong> Executed precise color grading to blend the astronaut into the intense, monochromatic orange atmosphere, balancing black levels and adding a realistic ground shadow to properly anchor the character into the scene.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by "Blade Runner 2049".</p>
+          <p class="software-line"><strong>Software Used:</strong> After Effects, Kling Ai</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="07" data-title="Noodles" data-vimeo="1204245414">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204245414?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">07</span>
+          <h3 class="project-name">Noodles</h3>
+        </div>
+        <template class="project-description">
+          <p>For this project, my main focus was achieving a seamless, photorealistic Invisible VFX integration by embedding a giant 3D asset into a commercial live-action environment. The goal was to make the digital element look completely indistinguishable from the real-world surroundings.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Camera Tracking / Matchmoving:</strong> Tracked the original footage to extract accurate camera data and establish a solid spatial foundation.</li>
+            <li><strong>Layout &amp; Animation:</strong> Imported the camera data and a pre-textured 3D noodle cup model into Houdini. I precisely aligned the asset on top of the building structure and added a subtle rotational animation to give the shot more life.</li>
+            <li><strong>Environment Lighting &amp; Rendering:</strong> Recreated the real-world plate's lighting conditions, sun direction, and sky reflections within Houdini to ensure the 3D asset matches the environment perfectly.</li>
+            <li><strong>Compositing:</strong> Performed the final integration, color grading, shadow matching, and seamless blending inside After Effects to lock the asset into the plate.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="08" data-title="Bridge" data-vimeo="1204245515">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204245515?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">08</span>
+          <h3 class="project-name">Bridge</h3>
+        </div>
+        <template class="project-description">
+          <p>An invisible VFX shot integrating a full CG destruction sequence into a live-action aerial plate. The goal of this project was to flawlessly replace a section of a real bridge with a 3D digital double and simulate a synchronized Rigid Body (RBD) and volumetric explosion, ensuring the digital elements are completely indistinguishable from the real world.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Environment &amp; Digital Double:</strong> Modeled a precise 1:1 replica of a section of the bridge within SideFX Houdini. Created and projected custom textures to seamlessly blend the 3D geometry with the live-action plate, ensuring a perfect "invisible" foundation prior to destruction.</li>
+            <li><strong>RBD Destruction Dynamics:</strong> Fractured the bridge geometry and utilized Houdini's Rigid Body Dynamics (RBD) solver to simulate a realistic, weight-driven structural collapse.</li>
+            <li><strong>Pyro Simulation (FX):</strong> Developed a custom, large-scale volumetric explosion from scratch. Meticulously timed and art-directed the Pyro simulation to interact organically with the fracturing concrete and steel.</li>
+            <li><strong>Lighting &amp; Multi-Pass Rendering:</strong> Replicated the natural, overcast outdoor lighting conditions within Houdini to ensure the CG bridge, debris, and smoke realistically matched the plate's global illumination.</li>
+            <li><strong>Compositing &amp; Seamless Integration:</strong> Assembled the 3D renders and original footage inside Adobe After Effects. Refined the integration by matching black levels, adding motion blur, and executing final color grading to achieve a flawless invisible composite.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="09" data-title="Gunshot" data-vimeo="1204320780">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204320780?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">09</span>
+          <h3 class="project-name">Gunshot</h3>
+        </div>
+        <template class="project-description">
+          <p>An action VFX shot focusing on realistic weapon enhancement and seamless element compositing. The goal of this project was to take a clean live-action plate of a subject firing a weapon and accurately integrate high-velocity muzzle flashes and flying bullet shells across multiple shot variations.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Muzzle Flash Integration &amp; Timing:</strong> Integrated practical muzzle flash assets, carefully aligning their sub-frame timing and spatial positioning with the physical weapon's recoil.</li>
+            <li><strong>Interactive Lighting &amp; Color Matching:</strong> Generated realistic interactive light passes within the composite to simulate the intense flash illuminating the actor's face, hands, and immediate clothing, matching the color profile of the original environment.</li>
+            <li><strong>Shell Ejection Dynamics:</strong> Incorporated practical bullet shell casing footage, adjusting their trajectories, speed, and motion blur to realistically convey the mechanical action of the firearm and sell the illusion of real firing.</li>
+            <li><strong>Multi-Angle Variation Pipeline:</strong> Developed several distinct versions of the effect, dynamically adapting the orientation, perspective, and scale of the flashes and shells to perfectly align with the changing shooting directions across different video plates.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="10" data-title="Light Saber" data-vimeo="1204319469">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204319469?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">10</span>
+          <h3 class="project-name">Light Saber</h3>
+        </div>
+        <template class="project-description">
+          <p>A creative VFX composition merging the gritty, historical environment of the series "Shōgun" with iconic "Star Wars" sci-fi elements. The core objective of this project was to cleanly track and replace a traditional katana with a photorealistic energy blade, ensuring complete coverage of the practical asset while implementing accurate interactive light propagation.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Energy Blade Generation (Saber FX):</strong> Developed a customized energy blade effect, meticulously configuring core thickness, falloff glow, and motion blur to mimic the look of a cinematic lightsaber while entirely concealing the practical blade underneath.</li>
+            <li><strong>Interactive Lighting &amp; Environment Pass:</strong> Created custom light emission passes to simulate the intense blue energy glow casting onto the samurai's armor, face, and immediate surroundings, dynamically adapting the light levels based on the blade's proximity.</li>
+            <li><strong>Compositing &amp; Seamless Blending:</strong> Integrated all custom glow channels and interactive illumination passes with the original live-action plate inside Adobe After Effects, carefully maintaining the shot's original grain and atmospheric depth.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by the series "Shōgun" and "Star Wars".</p>
+          <p class="software-line"><strong>Software Used:</strong> After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="11" data-title="Explosion's" data-vimeo="1204313595">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204313595?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">11</span>
+          <h3 class="project-name">Explosion's</h3>
+        </div>
+        <template class="project-description">
+          <p>A complex FX and compositing shot blending procedural volumetric simulations with a live-action background plate. The goal of this project was to create multiple realistic, large-scale explosion variations from scratch and seamlessly integrate them into the environment to achieve a cohesive, photorealistic landscape.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Pyro Simulation &amp; Volumetric Dynamics:</strong> Developed a highly detailed explosion simulation from scratch within SideFX Houdini. Generated multiple unique variations of the smoke and fire dynamics to ensure visual diversity across the different detonation points.</li>
+            <li><strong>Lighting &amp; Volumetric Rendering:</strong> Established a realistic shading and lighting setup for the volumes, carefully balancing internal flame emission with external environmental light to capture intricate details within the smoke columns.</li>
+            <li><strong>Debris Integration:</strong> Incorporated downloaded practical rock and debris elements, precisely aligning their spatial timing, scale, and positioning to make it appear as though they were organically ejected by the physical impact of the blasts.</li>
+            <li><strong>Compositing &amp; Atmospheric Blending:</strong> Combined the render, live-action plate, and debris elements inside Adobe After Effects. Fine-tuned the color grading, black levels, and depth layers to ensure every asset perfectly matched the lighting and atmosphere of the real-world environment.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="12" data-title="Shoe's" data-vimeo="1204252281">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204252281?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">12</span>
+          <h3 class="project-name">Shoe's</h3>
+        </div>
+        <template class="project-description">
+          <p>A three-part conceptual VFX and product design study exploring diverse procedural solvers and dynamics on footwear models within SideFX Houdini. The goal of this project was to master distinct simulation behaviors&mdash;including fabric draping, multi-body particle collisions, and guide-based hair dynamics&mdash;and present them in a clean, high-end commercial style.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Vellum Cloth Simulation (Shot 1):</strong> Modeled a custom fabric sheet and configured a Vellum Cloth solver to simulate organic deformation, art-directing the cloth to fluidly react, move, and cleanly wrap around the footwear geometry over time.</li>
+            <li><strong>Granular Body Collisions (Shot 2):</strong> Distributed numerous spheres within the volume of the original shoe model and simulated tight body-to-body and object collisions, utilizing custom velocity forces to drive the spheres in a continuous, constrained circular motion.</li>
+            <li><strong>Vellum Strands Fur Dynamics (Shot 3):</strong> Sourced an alternative shoe asset, generated a dense procedural fur layer, and implemented a Vellum Strands simulation to accurately art-direct the fine hair blowing and waving realistically under the influence of a rightward wind force.</li>
+            <li><strong>Studio Lighting &amp; Rendering:</strong> Established distinct, clean studio lighting setups for each iteration within Houdini to effectively highlight the varying physical and material behaviors of soft fabric, matte spheres, and fine hair strands.</li>
+            <li><strong>Compositing &amp; Product Lookdev:</strong> Assembled the Houdini renders inside Adobe After Effects, refining the depth of field, soft shadows, and color grading to unify all three conceptual sequences into a polished product showcase.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by "Nike Air 2017" by Man vs Machine.</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="13" data-title="Balls" data-vimeo="1204316630">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204316630?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">13</span>
+          <h3 class="project-name">Balls</h3>
+        </div>
+        <template class="project-description">
+          <p>My first foundational project exploring Vellum Grains simulation within SideFX Houdini. Heavily inspired by the sleek and minimalist aesthetic of the "PS5 Hardware Reveal Trailer," the goal of this project was to scatter and simulate granular particles over an animated base geometry while introducing a dynamic, time-dependent texture.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Vellum Grain Simulation &amp; Dynamics:</strong> Scattered procedural grains onto a pre-animated underlying model within Houdini, configuring the Vellum solver so the particles organically inherited and followed the motion of the driving geometry.</li>
+            <li><strong>Animated Lookdev &amp; Texturing:</strong> Designed a custom shader and texture map that dynamically shifts and alters over time to generate the expanding, emissive blue wave patterns across the granular surface.</li>
+            <li><strong>Environment Modeling &amp; Studio Lighting:</strong> Modeled the clean, minimalist architectural environment from scratch within Houdini and established a high-contrast studio lighting setup to perfectly replicate the high-end product reveal aesthetic.</li>
+            <li><strong>Compositing &amp; Post-Processing:</strong> Rendered the elements out of Houdini and assembled the final shot inside Adobe After Effects, emphasizing the emissive energy glows and refining the overall color grading.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by "PS5 Hardware Reveal Trailer".</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="14" data-title="Particles" data-vimeo="1204321412">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204321412?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">14</span>
+          <h3 class="project-name">Particles</h3>
+        </div>
+        <template class="project-description">
+          <p>My first foundational project exploring procedural particle dynamics within SideFX Houdini. The goal of this project was to design an organic particle simulation from scratch and seamlessly integrate it into a dramatically lit, sourced sci-fi environment.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Particle Dynamics &amp; Simulation:</strong> Developed a custom particle simulation from scratch, utilizing force operators and noise fields to achieve an organic volumetric motion.</li>
+            <li><strong>Environment &amp; Cinematic Lighting:</strong> Integrated a sourced interior environment asset and built a custom lighting setup from scratch, utilizing a sharp volumetric spotlight to capture the interaction between the light beam and the particle cluster.</li>
+            <li><strong>Camera Animation:</strong> Animated a subtle, calculated camera movement to emphasize the depth of the environment and the scale of the simulation.</li>
+            <li><strong>Compositing &amp; Atmospheric Enhancements:</strong> Blended the Houdini render inside Adobe After Effects. Integrated a practical dust particle footage overlay to enrich the atmospheric depth, and finalized the composite with precise color grading.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="15" data-title="Battleship" data-vimeo="1204320893">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204320893?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">15</span>
+          <h3 class="project-name">Battleship</h3>
+        </div>
+        <template class="project-description">
+          <p>My first foundational project exploring SideFX Houdini, with a heavy emphasis on mastering the software's core workflows through hard-surface modeling and asset creation. The goal of this project was to build a complete sci-fi asset from scratch and integrate it into a fully realized, rendered cinematic environment.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Hard-Surface Modeling &amp; Texturing:</strong> Designed and modeled the complete spaceship geometry from scratch within Houdini to establish a firm grasp of the software's modeling tools, followed by creating and assigning custom textures to define the vehicle's surface detail.</li>
+            <li><strong>Animation &amp; Camera Layout:</strong> Animated a subtle, natural flight path for the spacecraft to convey weight, and generated a dynamic camera move to enhance the cinematic scale and speed of the shot.</li>
+            <li><strong>Particle Dynamics (FX):</strong> Developed a custom particle simulation for the engine thrusters to create a high-energy propulsion exhaust effect.</li>
+            <li><strong>Environment &amp; Lighting:</strong> Modeled the ground geometry, integrated a sourced high-resolution surface texture, and established a dramatic lighting setup to accurately ground the spaceship with realistic shadows.</li>
+            <li><strong>Compositing &amp; Finalizing:</strong> Rendered all elements out of Houdini and combined them inside Adobe After Effects, refining the engine glows, atmospheric depth, and final color grading.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="16" data-title="Grass" data-vimeo="1204320310">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204320310?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">16</span>
+          <h3 class="project-name">Grass</h3>
+        </div>
+        <template class="project-description">
+          <p>A procedural FX and instancing shot exploring dynamic surface propagation inside SideFX Houdini. The goal of this project was to design a custom point growth system from scratch and utilize geometric instancing to simulate photorealistic grass organically spreading over a sourced 3D asset over time.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>Procedural Growth &amp; Particle Simulation:</strong> Developed a custom point propagation system within Houdini, utilizing specialized solvers to scatter particles that initiate from a specific angle and dynamically expand across the log's geometry over time.</li>
+            <li><strong>Asset Instancing &amp; Variation:</strong> Applied a copy-to-points workflow to instance multiple sourced grass models onto the simulated particles, introducing random variations in scale, orientation, and asset types to achieve a dense, natural-looking organic layer.</li>
+            <li><strong>Cinematic Studio Lighting:</strong> Established a dedicated studio lighting setup inside Houdini to accentuate the fine geometric details of the grass blades and enhance the realistic textures of the underlying wood asset.</li>
+            <li><strong>Compositing &amp; Background Creation:</strong> Integrated the Houdini render inside Adobe After Effects, where I designed a custom clean digital studio backdrop and finalized the composite with subtle color grading and depth adjustments.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="17" data-title="Dragon" data-vimeo="1204321450">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204321450?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">17</span>
+          <h3 class="project-name">Dragon</h3>
+        </div>
+        <template class="project-description">
+          <p>A complex, cinematic dark fantasy shot utilizing a hybrid workflow that blends traditional 3D environment layouts, procedural dynamics, and generative AI tools. Heavily inspired by the visual language of "Game of Thrones," the project focuses on executing advanced asset scattering, custom cloth and particle simulations, and utilizing AI for highly controlled environmental enhancement.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Layout &amp; Scene Assembly:</strong> Modeled and textured the ground plane within SideFX Houdini. Sourced and strategically scattered multiple assets, including swords, shields, skulls, and background mountain geometry, to build a compelling and detailed battlefield environment.</li>
+            <li><strong>Animation Refinement &amp; Control:</strong> Imported a sourced dragon asset and meticulously adjusted its pre-existing animation to achieve the precise framing, weight, and timing required for the shot's cinematic perspective.</li>
+            <li><strong>Vellum Cloth Simulation:</strong> Developed a dynamic wind-driven flag simulation from scratch within Houdini, generating three distinct animation variations and designing custom textures for the flags to maximize visual variety.</li>
+            <li><strong>Particle Dynamics (FX):</strong> Created a custom procedural particle simulation attached to the dragon's eyes to generate a subtle, glowing energy.</li>
+            <li><strong>Lighting &amp; Multi-Pass Rendering:</strong> Established a dramatic, atmospheric lighting setup to capture the moody fantasy theme, rendering out all essential passes directly from Houdini.</li>
+            <li><strong>AI Generation &amp; Control (Magnific AI):</strong> Leveraged generative AI to texture and enhance the scene environment. Utilized precise prompting to introduce background fires, fallen soldiers, and a detailed foreground water puddle with realistic reflections, while strictly preserving the underlying 3D animation structure and glowing eye particles.</li>
+            <li><strong>Compositing &amp; Atmospheric Integration:</strong> Combined the multi-pass Houdini renders, initial After Effects composites, and AI-generated passes. Integrated practical fire ember and spark overlays to enrich the atmospheric depth, finalizing the shot with precise color grading.</li>
+          </ul>
+          <p class="credit-line">Reference inspired by "Game of Thrones".</p>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects, Magnific AI</p>
+        </template>
+      </article>
+
+      <article class="project-card" data-index="18" data-title="Robot's" data-vimeo="1204321569">
+        <div class="project-video">
+          <iframe class="project-iframe" src="https://player.vimeo.com/video/1204321569?background=1&autoplay=0&controls=0&title=0&byline=0" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Project video preview"></iframe>
+        </div>
+        <div class="project-title-bar">
+          <span class="project-num">18</span>
+          <h3 class="project-name">Robot's</h3>
+        </div>
+        <template class="project-description">
+          <p>A sci-fi VFX shot exploring a hybrid workflow that blends 3D scene assembly, precise foreground masking, and generative AI tools. The project focuses on executing asset duplication for visual diversity, and leveraging AI for detailed surface texturing and lighting integration over a clay render foundation.</p>
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>3D Layout &amp; Animation Control:</strong> Sourced the robot asset, established the 3D scene layout within SideFX Houdini, and duplicated the model into three distinct variations with adjusted animation profiles to achieve visual diversity and convey an immense cinematic scale.</li>
+            <li><strong>Pass Generation &amp; Layout Rendering:</strong> Set up and rendered a complete clay pass of the animated robots out of Houdini, along with dedicated Ambient Occlusion (AO) maps for each asset to capture accurate contact depth and structural shadows.</li>
+            <li><strong>Rotoscoping &amp; Foreground Masking:</strong> Executed precise rotoscoping along the warehouse roofline within Adobe After Effects to cleanly separate the foreground architecture, masking out the lower halves of the robots to seamlessly position them behind the building prior to the AI stage.</li>
+            <li><strong>AI Generation &amp; Control (Magnific AI):</strong> Processed the intermediate masked clay composite through Magnific AI, leveraging precise prompting to generate photorealistic metallic textures, realistic surface weathering, and environmental lighting on the robots while strictly preserving the underlying 3D proportions and scale.</li>
+            <li><strong>Compositing &amp; Finalizing:</strong> Re-imported the AI-enhanced passes back into Adobe After Effects, refined the asset integration against the live-action plate, and finalized the shot with color grading.</li>
+          </ul>
+          <p class="software-line"><strong>Software Used:</strong> Houdini, After Effects, Magnific AI</p>
+        </template>
+      </article>
+
+      <!-- PROJECT_CARDS_END -->
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- PROJECT VIEW — dedicated overlay state for a single project  -->
+<!-- ============================================================ -->
+<div class="project-view" id="projectView" aria-hidden="true">
+  <div class="project-view-inner">
+
+    <aside class="project-view-side">
+      <button type="button" class="work-back-btn" id="projectBackBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Work</span>
+      </button>
+      <p class="project-view-index" id="projectViewIndex">01 / 18</p>
+    </aside>
+
+    <div class="project-view-main">
+      <h3 class="project-view-title" id="projectViewTitle">Project Title</h3>
+
+      <div class="project-view-video-wrap">
+        <div class="project-view-video" id="projectViewVideo"></div>
+      </div>
+
+      <div class="project-view-desc" id="projectViewDesc"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SHOWREEL VIEW — full background loop + play → lightbox       -->
+<!-- ============================================================ -->
+<div class="showreel-view" id="showreelView" aria-hidden="true">
+  <div class="showreel-screen">
+    <div class="showreel-bg" id="showreelBg"></div>
+    <div class="showreel-scrim"></div>
+
+    <button type="button" class="overlay-close" id="showreelCloseBtn" aria-label="Close showreel">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <button type="button" class="showreel-play" id="showreelPlayBtn" aria-label="Play showreel with sound">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5L19 12L8 19V5Z" fill="currentColor"/>
+      </svg>
+      <span>Play</span>
+    </button>
+
+    <button type="button" class="showreel-scroll-cue" id="showreelScrollCueBtn" aria-label="Scroll to showreel details">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4V20M12 20L5 13M12 20L19 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="showreel-details" id="showreelDetails">
+    <div class="project-view-desc">
+      <p>Welcome to my VFX Showreel!</p>
+      <p>This reel is a collection of the projects I developed throughout my studies at IAC, showcasing a hybrid workflow of 3D simulation, visual effects, compositing, and generative AI integration.</p>
+      <h4>Core Focus &amp; Skills:</h4>
+      <ul>
+        <li>Pyro, Vellum, Particles and Fluid Simulations</li>
+        <li>Technical Compositing &amp; Elements Integration</li>
+        <li>Generative AI Workflows &amp; Detail Enhancement</li>
+      </ul>
+      <p class="software-line"><strong>Software &amp; AI Tools Used:</strong> SideFX Houdini, Adobe After Effects, Photoshop, and Magnific AI.</p>
+    </div>
+  </div>
+
+  <div class="showreel-footer">
+    <button type="button" class="showreel-back-to-top" id="showreelBackToTopBtn" aria-label="Back to showreel top">↑</button>
+  </div>
+
+  <div class="showreel-lightbox" id="showreelLightbox" aria-hidden="true">
+    <div class="showreel-lightbox-video" id="showreelLightboxVideo"></div>
+    <button type="button" class="overlay-close overlay-close--lightbox" id="showreelLightboxCloseBtn" aria-label="Close lightbox">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- INFO OVERLAY                                                  -->
+<!-- ============================================================ -->
+<div class="info-overlay" id="infoOverlay" aria-hidden="true">
+  <button type="button" class="overlay-close" id="infoCloseBtn" aria-label="Close info">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="info-inner">
+    <div class="info-col info-col--bio">
+      <p class="info-reveal">I am a VFX artist, a compositor, and a cinematic AI creator for both videos and images. I studied at IAC (Israeli Animation College).</p>
+      <p class="info-reveal">I work in SideFX Houdini, After Effects, Magnific Ai and Photoshop, with a focus on pyro, particles, vellum and fluid simulations.</p>
+      <p class="info-reveal">My inspiration comes from movies, TV shows, and video game cinematics. I enjoy &ldquo;invisible VFX&rdquo;&mdash;blending digital elements into real footage so perfectly that they look like a natural part of the world, without anyone noticing.</p>
+      <p class="info-reveal">Outside of work, I love watching movies and tv-show&rsquo;s, playing video games, and going out with friends.</p>
+    </div>
+
+    <div class="info-col info-col--contact">
+      <p class="info-reveal info-contact-label">Get in touch</p>
+
+      <div class="info-socials info-reveal">
+        <a href="https://www.artstation.com/orikopitz" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ArtStation profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.272H9.419L21.598 22.54l1.984-3.432c.13-.213.418-.792.418-1.36zM11.034 7.062l4.967 8.605H6.067z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ori-kopitz-3a49913a4/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="https://vimeo.com/orikopitz" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Vimeo profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.396 7.164c-.1 2.198-1.636 5.207-4.604 9.029-3.07 3.989-5.67 5.984-7.804 5.984-1.323 0-2.441-1.222-3.354-3.666-.61-2.235-1.221-4.47-1.831-6.706-.677-2.444-1.405-3.666-2.18-3.666-.169 0-.76.355-1.778 1.06l-1.067-1.37c1.124-.99 2.231-1.98 3.32-2.972C4.612 3.682 5.661 2.954 6.358 2.89c1.624-.157 2.625.953 3.003 3.33.408 2.566.69 4.164.85 4.793.473 2.149.992 3.223 1.56 3.223.44 0 1.102-.696 1.984-2.087.882-1.393 1.355-2.451 1.42-3.179.13-1.201-.347-1.804-1.42-1.804-.506 0-1.028.116-1.566.346 1.04-3.41 3.027-5.068 5.96-4.972 2.177.062 3.203 1.475 3.077 4.235l-.83-.611z"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="info-phone info-reveal">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 3h3l1.5 5-2 1.5a11 11 0 0 0 6.5 6.5L16 13.5l5 1.5v3a2 2 0 0 1-2 2C10.163 20 4 13.837 4 5.5a2 2 0 0 1 1.5-2z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>+972 55 662 1216</span>
+      </p>
+      <p class="info-email-text info-reveal">orikopitz364@gmail.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- WIPE TRANSITION LAYER (used for the project-view page-wipe)   -->
+<!-- ============================================================ -->
+<div class="view-wipe" id="viewWipe" aria-hidden="true"></div>
+
+<!-- ============================================================ -->
+<!-- BACK TO TOP                                                   -->
+<!-- ============================================================ -->
+<button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 20V4M12 4L5 11M12 4L19 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
