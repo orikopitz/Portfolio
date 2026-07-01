@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 /* ---------------------------------------------------------------------------
    0. CONSTANTS / HELPERS
    --------------------------------------------------------------------------- */
-const MAIN_SHOWREEL_VIMEO_ID = '1204243739';
+const MAIN_SHOWREEL_VIMEO_ID = '1206192471';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
