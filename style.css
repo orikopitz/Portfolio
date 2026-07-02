@@ -772,24 +772,50 @@ button:focus-visible{
   .hero-video-wrap { pointer-events: none; }
 
   /*
-   * Mirror the showreel-screen fix: size the hero with Small Viewport Height
-   * so its bottom edge sits exactly at the top of the browser's bottom bar.
-   * The scroll-cue's `bottom` value is then measured from that visible edge,
-   * not from behind the browser chrome.
+   * FIX — showreel / hero video extreme zoom on mobile portrait.
+   *
+   * Desktop uses width:177.78vh where vh ≈ 797 px (large viewport) →
+   * iframe is 1 500 px wide inside a 390 px container = 3.85× zoom.
+   * Switching to svh (small viewport ≈ 650 px) narrows the iframe to
+   * 1 155 px = 2.96× zoom while still covering the visible area in the
+   * correct 16:9 ratio with no distortion or stretching.
+   * min-height:unset removes the old 100% rule so the explicit height wins.
    */
-  .hero {
-    height: 100vh;   /* fallback for browsers without svh support */
-    height: 100svh;  /* primary: constant height = viewport minus all browser UI */
+  .hero-video,
+  .showreel-bg iframe {
+    width: 177.78svh;    /* 16:9 × svh — covers visible area, 23 % less zoom */
+    height: 100svh;      /* fills the visible viewport height exactly */
+    min-width: 100%;     /* always at least as wide as the screen */
+    min-height: unset;   /* replaced by the explicit height above */
   }
 
   /*
-   * Push the down-arrow well clear of the browser's bottom navigation bar
-   * (back / forward / tabs / share).  Combined with the 100svh hero above,
-   * the button is fully visible the instant the page loads — no scrolling or
-   * guessing required.
+   * FIX — "Features" section bleeds into view after scroll-to-top.
+   *
+   * With hero at 100svh (≈ 650 px), when iOS hides the browser bar the
+   * dynamic viewport grows to ≈ 733 px.  At scrollTop 0 the viewport
+   * reveals the top of the Features section in that extra 83 px of space.
+   *
+   * min-height:100lvh pins the hero to the LARGE viewport height (≈ 797 px),
+   * which is the maximum viewport this device can ever show.  Features always
+   * start at ≥ 797 px, so they can never appear at scrollTop 0 regardless of
+   * whether the browser bar is visible or hidden.  100lvh is a static value
+   * at runtime (unlike dvh), so there is zero layout shift while scrolling.
+   */
+  .hero {
+    height: 100vh;        /* fallback for browsers without svh / lvh support */
+    height: 100svh;       /* base height = visible viewport (browser UI shown) */
+    min-height: 100lvh;   /* never shorter than max possible viewport → no bleed */
+  }
+
+  /*
+   * With min-height:100lvh the hero is ≈ 797 px tall on a modern iPhone.
+   * Raise the scroll-cue so it lands within the ≈ 650 px visible area.
+   * 22 vh ≈ 175 px from hero bottom → cue sits at ≈ 622 px from top,
+   * giving ≈ 28 px clearance above the browser navigation bar.
    */
   .scroll-cue {
-    bottom: clamp(5rem, 14vh, 8rem);
+    bottom: clamp(8rem, 22vh, 11rem);
   }
 
   /* Remove 300 ms tap delay on all interactive scroll/close buttons */

@@ -110,6 +110,26 @@ function smoothScrollTo(target, offset = 0){
     } else {
       y = Number(target) || 0;
     }
+
+    /*
+     * FIX — "Features" section briefly visible after scroll-to-top on mobile.
+     *
+     * When y === 0 (back-to-top) the browser bar has usually been hidden by
+     * scrolling, so the dynamic viewport is taller than the hero (100svh).
+     * A smooth scroll leaves a short window where scrollTop is 0 but the bar
+     * hasn't reappeared yet, exposing the Features section at the bottom.
+     *
+     * Using behavior:'instant' snaps the page to 0 synchronously, which
+     * immediately triggers iOS Safari to restore the browser bar and shrink
+     * the viewport back to svh — eliminating the bleed window entirely.
+     * The hero's min-height:100lvh (CSS) is a belt-and-suspenders guard for
+     * the same issue.
+     */
+    if (y === 0) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+
     window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
     return;
   }
