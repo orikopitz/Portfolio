@@ -772,35 +772,31 @@ button:focus-visible{
   .hero-video-wrap { pointer-events: none; }
 
   /*
-   * FIX — showreel / hero video extreme zoom on mobile portrait.
+   * FIX 1 — Black bar at the top of the hero video on mobile.
    *
-   * Desktop uses width:177.78vh where vh ≈ 797 px (large viewport) →
-   * iframe is 1 500 px wide inside a 390 px container = 3.85× zoom.
-   * Switching to svh (small viewport ≈ 650 px) narrows the iframe to
-   * 1 155 px = 2.96× zoom while still covering the visible area in the
-   * correct 16:9 ratio with no distortion or stretching.
-   * min-height:unset removes the old 100% rule so the explicit height wins.
+   * .hero-video-wrap is position:fixed; inset:0 → height = 100vh ≈ 797 px.
+   * The video was sized to 100svh (≈ 650 px) and centred via top:50% +
+   * translateY(-50%), leaving a (797-650)/2 ≈ 74 px black gap at the TOP.
+   *
+   * Fix: set top:0 and replace translate(-50%,-50%) with translateX(-50%)
+   * so the video is anchored to the wrapper's top edge.  The leftover 147 px
+   * gap shifts to the BOTTOM — behind the browser chrome, invisible to user.
+   * Horizontal centering is preserved via left:50% + translateX(-50%).
    */
   .hero-video,
   .showreel-bg iframe {
-    width: 177.78svh;    /* 16:9 × svh — covers visible area, 23 % less zoom */
-    height: 100svh;      /* fills the visible viewport height exactly */
-    min-width: 100%;     /* always at least as wide as the screen */
-    min-height: unset;   /* replaced by the explicit height above */
+    width: 177.78svh;            /* 16:9 × svh — 23 % less zoom than vh-based */
+    height: 100svh;              /* fills the visible viewport height */
+    min-width: 100%;
+    min-height: unset;
+    top: 0;                      /* anchor to top — eliminates black bar */
+    left: 50%;
+    transform: translateX(-50%); /* horizontal centre only, no vertical shift */
   }
 
   /*
-   * FIX — "Features" section bleeds into view after scroll-to-top.
-   *
-   * With hero at 100svh (≈ 650 px), when iOS hides the browser bar the
-   * dynamic viewport grows to ≈ 733 px.  At scrollTop 0 the viewport
-   * reveals the top of the Features section in that extra 83 px of space.
-   *
-   * min-height:100lvh pins the hero to the LARGE viewport height (≈ 797 px),
-   * which is the maximum viewport this device can ever show.  Features always
-   * start at ≥ 797 px, so they can never appear at scrollTop 0 regardless of
-   * whether the browser bar is visible or hidden.  100lvh is a static value
-   * at runtime (unlike dvh), so there is zero layout shift while scrolling.
+   * FIX — "Features" section bleed: min-height:100lvh ensures the hero is
+   * always ≥ max possible viewport so Features can never appear at scrollTop 0.
    */
   .hero {
     height: 100vh;        /* fallback for browsers without svh / lvh support */
@@ -808,14 +804,18 @@ button:focus-visible{
     min-height: 100lvh;   /* never shorter than max possible viewport → no bleed */
   }
 
-  /*
-   * With min-height:100lvh the hero is ≈ 797 px tall on a modern iPhone.
-   * Raise the scroll-cue so it lands within the ≈ 650 px visible area.
-   * 22 vh ≈ 175 px from hero bottom → cue sits at ≈ 622 px from top,
-   * giving ≈ 28 px clearance above the browser navigation bar.
-   */
+  /* 22 vh ≈ 175 px from hero bottom → cue at ≈ 622 px from top (28 px above bar) */
   .scroll-cue {
     bottom: clamp(8rem, 22vh, 11rem);
+  }
+
+  /*
+   * FIX 3 — Back-to-top arrow was hugging the bottom-right corner.
+   * Added comfortable breathing room from both edges on mobile.
+   */
+  .back-to-top {
+    bottom: clamp(4rem, 12vh, 6rem);   /* well above the browser nav bar */
+    right: clamp(1.25rem, 5vw, 2rem);  /* comfortable gap from right edge */
   }
 
   /* Remove 300 ms tap delay on all interactive scroll/close buttons */
