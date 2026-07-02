@@ -737,18 +737,36 @@ button:focus-visible{
   /* Right column: Work / Showreel / Info stacked, perfectly right-aligned */
   .main-nav {
     flex-direction: column;
-    align-items: stretch;   /* stretch items to fill the full column width … */
+    align-items: flex-end;  /* push every item's right edge to the container wall */
     justify-content: flex-start;
     gap: 10px;
     margin-right: 0;
     margin-top: 2px;
   }
   /*
-   * width:100% + text-align:right = every word ends on exactly the same
-   * invisible vertical line regardless of character count (WORK / SHOWREEL /
-   * INFO all share the same right edge).
+   * ROOT CAUSE OF JAGGED ALIGNMENT:
+   * "Work" is an <a>  — zero default padding, box right-edge = text right-edge.
+   * "Showreel" / "Info" are <button> — iOS Safari's UA stylesheet adds implicit
+   * right-side padding via -webkit-appearance:button, so their text lands several
+   * pixels LEFT of the element's right edge, making them appear left of WORK.
+   *
+   * FIX:
+   *  1. -webkit-appearance:none  strips all browser button chrome and padding
+   *  2. appearance:none          standards-compliant counterpart
+   *  3. padding:0 0 4px          explicit zero on L + R for both <a> AND <button>,
+   *                              keeping only the 4px bottom for the underline
+   *  4. width:100% + text-align:right  every last letter hits the identical
+   *                                    right-edge pixel, flush to WORK's K
    */
-  .nav-link { font-size: 1rem; letter-spacing: .03em; text-align: right; width: 100%; }
+  .nav-link {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0 0 4px;
+    font-size: 1rem;
+    letter-spacing: .03em;
+    text-align: right;
+    width: 100%;
+  }
 
   /* -- 14c. HERO — stop fixed video-wrapper intercepting tap events --------- */
   .hero-video-wrap { pointer-events: none; }
@@ -833,11 +851,17 @@ button:focus-visible{
     overscroll-behavior-y: contain;
   }
 
-  /* Allow inner grid to grow with its content instead of being capped at 100% */
+  /*
+   * Allow the inner grid to grow with its content (enables scrolling).
+   * Also override the global padding-top which is calc(--header-h + 3rem) =
+   * 208 px on mobile — far too much dead space above the bio.  6 rem (96 px)
+   * clears the close button (bottom edge ≈ 94 px) by just 2 px and places the
+   * first line of text right at the red-line target in the screenshot.
+   */
   .info-inner {
     height: auto;
     min-height: 100%;
-    padding-bottom: 5rem;
+    padding: 6rem var(--gutter) 5rem;
   }
 
 }
