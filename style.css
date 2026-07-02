@@ -734,19 +734,45 @@ button:focus-visible{
   .brand-logo { height: 46px; }
   .brand-name  { font-size: 1.1rem; letter-spacing: .01em; }
 
-  /* Right column: Work / Showreel / Info stacked, right-aligned */
+  /* Right column: Work / Showreel / Info stacked, perfectly right-aligned */
   .main-nav {
     flex-direction: column;
-    align-items: flex-end;
+    align-items: stretch;   /* stretch items to fill the full column width … */
     justify-content: flex-start;
     gap: 10px;
     margin-right: 0;
     margin-top: 2px;
   }
-  .nav-link { font-size: 1rem; letter-spacing: .03em; }
+  /*
+   * width:100% + text-align:right = every word ends on exactly the same
+   * invisible vertical line regardless of character count (WORK / SHOWREEL /
+   * INFO all share the same right edge).
+   */
+  .nav-link { font-size: 1rem; letter-spacing: .03em; text-align: right; width: 100%; }
 
   /* -- 14c. HERO — stop fixed video-wrapper intercepting tap events --------- */
   .hero-video-wrap { pointer-events: none; }
+
+  /*
+   * Mirror the showreel-screen fix: size the hero with Small Viewport Height
+   * so its bottom edge sits exactly at the top of the browser's bottom bar.
+   * The scroll-cue's `bottom` value is then measured from that visible edge,
+   * not from behind the browser chrome.
+   */
+  .hero {
+    height: 100vh;   /* fallback for browsers without svh support */
+    height: 100svh;  /* primary: constant height = viewport minus all browser UI */
+  }
+
+  /*
+   * Push the down-arrow well clear of the browser's bottom navigation bar
+   * (back / forward / tabs / share).  Combined with the 100svh hero above,
+   * the button is fully visible the instant the page loads — no scrolling or
+   * guessing required.
+   */
+  .scroll-cue {
+    bottom: clamp(5rem, 14vh, 8rem);
+  }
 
   /* Remove 300 ms tap delay on all interactive scroll/close buttons */
   .scroll-cue,
