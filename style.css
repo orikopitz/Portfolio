@@ -700,3 +700,118 @@ button:focus-visible{
   .scroll-cue,
   .info-reveal{ transition: none !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   14. MOBILE FIXES — strictly scoped to max-width: 768px.
+       Every rule is wrapped in this one media query.
+       The desktop version is completely untouched.
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* -- 14a. TOKEN ----------------------------------------------------------- */
+  :root {
+    --header-h: 160px; /* taller to house the stacked 2-column layout */
+  }
+
+  /* -- 14b. HEADER — 2-column vertical stack -------------------------------- */
+  .header-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    justify-content: start;
+    padding: 28px 20px 24px;
+    height: 100%;
+    gap: 0;
+  }
+
+  /* Left column: logo on top, name directly below */
+  .brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-left: 0;
+  }
+  .brand-logo { height: 46px; }
+  .brand-name  { font-size: 1.1rem; letter-spacing: .01em; }
+
+  /* Right column: Work / Showreel / Info stacked, right-aligned */
+  .main-nav {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-right: 0;
+    margin-top: 2px;
+  }
+  .nav-link { font-size: 1rem; letter-spacing: .03em; }
+
+  /* -- 14c. HERO — stop fixed video-wrapper intercepting tap events --------- */
+  .hero-video-wrap { pointer-events: none; }
+
+  /* Remove 300 ms tap delay on all interactive scroll/close buttons */
+  .scroll-cue,
+  .back-to-top,
+  .showreel-scroll-cue,
+  .showreel-back-to-top,
+  .overlay-close,
+  .nav-link,
+  .brand { touch-action: manipulation; }
+
+  /* -- 14d. SHOWREEL VIEW — layout & scroll --------------------------------- */
+
+  /*
+   * 100svh = Small Viewport Height: constant height that excludes the iOS
+   * Safari URL bar, ensuring the down-arrow button is always fully visible
+   * on screen without any manual scrolling.
+   */
+  .showreel-screen {
+    height: 100vh;   /* safe fallback */
+    height: 100svh;  /* primary: static, excludes browser UI chrome */
+  }
+
+  /*
+   * Remove the forced min-height: 100vh so that .showreel-details +
+   * .showreel-footer together fit within a single viewport height.
+   * When JS scrolls to maxScroll the entire text block AND the back-to-top
+   * arrow are simultaneously visible with no micro-scrolling required.
+   */
+  .showreel-details {
+    min-height: auto;
+    padding: 2.5rem 1.25rem 1.75rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .showreel-details .project-view-desc          { max-width: 100%; margin: 0; }
+  .showreel-details .project-view-desc p        { font-size: .97rem; line-height: 1.6; margin-bottom: .9rem; }
+  .showreel-details .project-view-desc h4       { font-size: .75rem; margin: 1.2rem 0 .75rem; }
+  .showreel-details .project-view-desc ul       { gap: .5rem; margin-bottom: 1rem; }
+  .showreel-details .project-view-desc li       { font-size: .91rem; line-height: 1.55; }
+  .showreel-details .project-view-desc .software-line { font-size: .88rem; padding-top: .75rem; }
+
+  .showreel-footer { padding: 0 1.25rem 2.5rem; }
+
+  /* -- 14e. INFO OVERLAY — enable scrolling on mobile ----------------------- */
+
+  /*
+   * body.lock-scroll adds both overflow:hidden AND height:100vh.
+   * The height:100vh is the root cause of the iOS freeze: it collapses the
+   * scroll container that a position:fixed overlay relies on.
+   * Removing only the height constraint here lets the overlay scroll freely
+   * while the body still cannot be scrolled behind it.
+   */
+  body.lock-scroll { height: auto; }
+
+  .info-overlay {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* Allow inner grid to grow with its content instead of being capped at 100% */
+  .info-inner {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 5rem;
+  }
+
+}

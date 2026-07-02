@@ -10,7 +10,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
    --------------------------------------------------------------------------- */
 const MAIN_SHOWREEL_VIMEO_ID = '1206192471';
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Detect touch / mobile — used to choose between GSAP and native scroll APIs */
+const isTouchDevice = () => ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
 function vimeoBackgroundUrl(id){
   // muted / no-controls / looping — used for all background & hover loops
@@ -96,6 +98,21 @@ let savedHomeScrollY = 0;
    2. SMOOTH SCROLL (ScrollToPlugin) — header "Work" link + hero arrow
    --------------------------------------------------------------------------- */
 function smoothScrollTo(target, offset = 0){
+  /*
+   * GSAP's gsap.to(window, { scrollTo }) is unreliable on iOS Safari —
+   * fall back to the native scrollTo API on all touch devices.
+   */
+  if (isTouchDevice()) {
+    let y = 0;
+    if (typeof target === 'string') {
+      const el = document.querySelector(target);
+      if (el) y = Math.max(0, el.getBoundingClientRect().top + window.scrollY - offset);
+    } else {
+      y = Number(target) || 0;
+    }
+    window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+    return;
+  }
   gsap.to(window, {
     duration: reduceMotion ? 0.01 : 1.15,
     ease: 'power3.inOut',
@@ -299,6 +316,16 @@ const showreelBackToTopBtn = document.getElementById('showreelBackToTopBtn');
 
 function scrollToShowreelDetails(){
   const maxScroll = showreelView.scrollHeight - showreelView.clientHeight;
+  /*
+   * Mobile: GSAP's scrollTo on a position:fixed overflow container is
+   * unreliable on iOS. element.scrollTo() with behavior:'smooth' is rock-solid.
+   * CSS ensures details+footer together fit in one viewport so scrolling to
+   * maxScroll makes the entire text block AND the back-to-top arrow visible.
+   */
+  if (isTouchDevice()) {
+    showreelView.scrollTo({ top: maxScroll, behavior: reduceMotion ? 'auto' : 'smooth' });
+    return;
+  }
   gsap.to(showreelView, {
     duration: reduceMotion ? 0.01 : 1.1,
     ease: 'power3.inOut',
@@ -307,6 +334,11 @@ function scrollToShowreelDetails(){
 }
 
 function scrollToShowreelTop(){
+  /* Mobile: native element.scrollTo for reliable cross-browser behaviour */
+  if (isTouchDevice()) {
+    showreelView.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    return;
+  }
   gsap.to(showreelView, {
     duration: reduceMotion ? 0.01 : 1.1,
     ease: 'power3.inOut',
@@ -352,6 +384,7 @@ showreelLightbox.addEventListener('click', (e) => {
    --------------------------------------------------------------------------- */
 function openInfo(){
   infoOverlay.classList.add('is-open');
+  infoOverlay.scrollTop = 0; /* reset to top every time so content is never pre-scrolled */
   document.body.classList.add('lock-scroll');
   gsap.set(infoOverlay, { opacity: 1 });
 
