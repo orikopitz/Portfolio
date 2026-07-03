@@ -445,6 +445,12 @@ ScrollTrigger.create({
 });
 
 backToTopBtn.addEventListener('click', () => {
+  if (isTouchDevice()) {
+    /* FIX: native smooth scroll to absolute top origin on mobile */
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    resumeHeroVideo();
+    return;
+  }
   smoothScrollTo(0, 0);
   resumeHeroVideo();
 });

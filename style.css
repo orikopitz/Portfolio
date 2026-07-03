@@ -769,53 +769,62 @@ button:focus-visible{
   }
 
   /* -- 14c. HERO — stop fixed video-wrapper intercepting tap events --------- */
-  .hero-video-wrap { pointer-events: none; }
+
+  /* Force header to float transparently over the video on mobile */
+  .site-header {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .hero-video-wrap {
+    pointer-events: none;
+    top: 0 !important;
+  }
 
   /*
-   * FIX 1 — Black bar at the top of the hero video on mobile.
-   *
-   * .hero-video-wrap is position:fixed; inset:0 → height = 100vh ≈ 797 px.
-   * The video was sized to 100svh (≈ 650 px) and centred via top:50% +
-   * translateY(-50%), leaving a (797-650)/2 ≈ 74 px black gap at the TOP.
-   *
-   * Fix: set top:0 and replace translate(-50%,-50%) with translateX(-50%)
-   * so the video is anchored to the wrapper's top edge.  The leftover 147 px
-   * gap shifts to the BOTTOM — behind the browser chrome, invisible to user.
-   * Horizontal centering is preserved via left:50% + translateX(-50%).
+   * FIX — black bar at top of hero video on mobile.
+   * .hero-video-wrap is position:fixed; height:100vh ≈ 797 px on iOS.
+   * Previous rule: height:100svh (650px) centred with top:50%
+   * → left (797-650)/2 ≈ 74 px of dark wrapper visible above the video.
+   * Fix: top:0 anchors the video to the wrapper's top edge; height:100vh
+   * fills the wrapper completely — no gap at top, none at bottom either
+   * since 100vh === container height. !important overrides specificity conflicts.
    */
-  .hero-video,
+  .hero-video {
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 177.78vh !important;
+    height: 100vh !important;
+    min-width: 100% !important;
+    min-height: unset !important;
+  }
+
+  /* Showreel overlay iframe — different container, keep svh sizing */
   .showreel-bg iframe {
-    width: 177.78svh;            /* 16:9 × svh — 23 % less zoom than vh-based */
-    height: 100svh;              /* fills the visible viewport height */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 177.78svh;
+    height: 100svh;
     min-width: 100%;
     min-height: unset;
-    top: 0;                      /* anchor to top — eliminates black bar */
-    left: 50%;
-    transform: translateX(-50%); /* horizontal centre only, no vertical shift */
   }
 
-  /*
-   * FIX — "Features" section bleed: min-height:100lvh ensures the hero is
-   * always ≥ max possible viewport so Features can never appear at scrollTop 0.
-   */
   .hero {
-    height: 100vh;        /* fallback for browsers without svh / lvh support */
-    height: 100svh;       /* base height = visible viewport (browser UI shown) */
-    min-height: 100lvh;   /* never shorter than max possible viewport → no bleed */
+    height: 100vh;
+    height: 100svh;
+    min-height: 100lvh;
   }
 
-  /* 22 vh ≈ 175 px from hero bottom → cue at ≈ 622 px from top (28 px above bar) */
   .scroll-cue {
     bottom: clamp(8rem, 22vh, 11rem);
   }
 
-  /*
-   * FIX 3 — Back-to-top arrow was hugging the bottom-right corner.
-   * Added comfortable breathing room from both edges on mobile.
-   */
+  /* FIX — scroll-up arrow: shift away from screen edges */
   .back-to-top {
-    bottom: clamp(4rem, 12vh, 6rem);   /* well above the browser nav bar */
-    right: clamp(1.25rem, 5vw, 2rem);  /* comfortable gap from right edge */
+    bottom: 80px !important;
+    right: 25px !important;
   }
 
   /* Remove 300 ms tap delay on all interactive scroll/close buttons */
