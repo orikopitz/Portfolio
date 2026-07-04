@@ -322,6 +322,18 @@ const showreelScreenEl = document.querySelector('.showreel-screen');
 const showreelBackToTopBtn = document.getElementById('showreelBackToTopBtn');
 
 function scrollToShowreelDetails(){
+  /* Fix 4 — landscape: scroll to the START of the description text block
+     (showreelDetails.offsetTop) so the first line is immediately visible,
+     instead of jumping to the absolute bottom which skips the beginning. */
+  const isLandscape = window.matchMedia('(max-width: 950px) and (orientation: landscape)').matches;
+  if (isLandscape && showreelDetails) {
+    showreelView.scrollTo({
+      top: showreelDetails.offsetTop,
+      behavior: reduceMotion ? 'auto' : 'smooth'
+    });
+    return;
+  }
+
   const maxScroll = showreelView.scrollHeight - showreelView.clientHeight;
   /*
    * Mobile: GSAP's scrollTo on a position:fixed overflow container is

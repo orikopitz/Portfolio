@@ -900,3 +900,145 @@ button:focus-visible{
   }
 
 }
+
+/* ---------------------------------------------------------------------------
+   15. MOBILE LANDSCAPE FIXES
+       Strictly scoped to @media (max-width: 950px) and (orientation: landscape).
+       Desktop, portrait-phone, and tablet-portrait are completely untouched.
+   --------------------------------------------------------------------------- */
+@media (max-width: 950px) and (orientation: landscape) {
+
+  /* -- Token: compact 1-row header height for low-height landscape screen -- */
+  :root { --header-h: 56px; }
+
+  /* ── Fix 1 — NAVBAR: single row, 30 % smaller, brand left / nav right ── */
+  .site-header {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  /* Reset the portrait 2-column grid → single-row flex */
+  .header-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 clamp(12px, 2.5vw, 24px) !important;
+    height: 100% !important;
+    grid-template-columns: unset !important;
+    gap: 0 !important;
+  }
+
+  /* LEFT cluster: logo + name inline, pinned to far-left */
+  .brand {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-left: 0 !important;
+  }
+  .brand-logo { height: 32px !important; }          /* 46 px × 0.70 = 32 px */
+  .brand-name  { font-size: 0.77rem !important;      /* 1.1 rem × 0.70        */
+                 letter-spacing: 0.01em !important; }
+
+  /* RIGHT cluster: Work / Showreel / Info inline, pinned to far-right */
+  .main-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0.7rem !important;    /* 10 px × 0.70 = 7 px  */
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+  }
+  .nav-link {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    font-size: 0.7rem !important;   /* 1 rem × 0.70 = 0.7 rem */
+    letter-spacing: 0.03em !important;
+    text-align: left !important;
+    width: auto !important;
+    padding: 0 0 2px !important;
+  }
+
+  /* ── Fix 2 — INFO OVERLAY: text directly under X, touch-scroll enabled ── */
+  body.lock-scroll { height: auto !important; }
+
+  .info-overlay {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+  }
+
+  /* Reposition X close button flush to landscape top */
+  .overlay-close {
+    top: 10px !important;
+    right: clamp(10px, 2vw, 20px) !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Shift bio text block to start just below the X button */
+  .info-inner {
+    height: auto !important;
+    min-height: 100% !important;
+    padding: 3rem 1.25rem 2rem !important;   /* ≈ 48 px top — clears X button */
+    align-content: start !important;
+    grid-template-columns: 1fr !important;   /* single column in landscape    */
+    gap: 1.2rem !important;
+  }
+  .info-col--bio p { font-size: 1rem !important; line-height: 1.4 !important; }
+  .info-col--contact {
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-top: 1px solid var(--c-line-soft) !important;
+    padding-top: 1rem !important;
+    gap: 1rem !important;
+  }
+
+  /* ── Fix 3 — PROJECT PAGE: collapse padding so video is front-and-center ── */
+  .project-view-inner {
+    padding: calc(var(--header-h) + 0.5rem) clamp(0.75rem, 2vw, 1.5rem) 1rem !important;
+    /* 56 px + 8 px = 64 px top — content visible immediately */
+    gap: 0.5rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* WORK back btn + index: compact single row */
+  .project-view-side {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+  }
+
+  /* Smaller project title so it takes minimal vertical space */
+  .project-view-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .project-view-desc { margin-top: 0.75rem !important; }
+
+  /*
+   * Cap the video player height so it fully fits within the landscape
+   * viewport without any scrolling required.
+   * 100vh − 150 px (controls + title) gives the video ≈ 240 px on a
+   * 390 px-tall landscape phone; aspect-ratio 16:9 then sets the width.
+   */
+  .project-view-video-wrap {
+    max-height: calc(100vh - 150px) !important;
+  }
+
+  /* ── Showreel overlay: strip excess vertical padding in landscape ─────── */
+  .showreel-screen {
+    height: 100vh !important;
+    height: 100svh !important;
+  }
+
+  .showreel-details {
+    min-height: auto !important;
+    padding: 1.5rem 1.25rem 1rem !important;
+  }
+
+  .showreel-footer { padding: 0 1rem 1.5rem !important; }
+}
