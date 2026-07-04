@@ -1042,3 +1042,62 @@ button:focus-visible{
 
   .showreel-footer { padding: 0 1rem 1.5rem !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   15b. LANDSCAPE — Eliminate text-overlaps-video bug in project pages.
+        Root cause: .project-view-side has position:sticky which causes it to
+        float over the video/description as the user scrolls in single-column
+        landscape layout. Additionally .project-view-video-wrap was targeted
+        with the wrong selector in the previous block; .video-wrap is correct.
+   --------------------------------------------------------------------------- */
+@media (max-width: 950px) and (orientation: landscape) {
+
+  /* 1. Remove sticky from the side column — in single-column layout sticky
+        causes the side panel to layer on top of content below it on scroll. */
+  .project-view-side {
+    position: static !important;
+    top: auto !important;
+    align-self: auto !important;
+  }
+
+  /* 2. Force the video wrapper into a normal block flow with correct 16:9
+        intrinsic height. The previous fix used the wrong selector
+        (.project-view-video-wrap); the real element is .video-wrap. */
+  .project-view-inner .video-wrap {
+    position: relative !important;
+    z-index: 0 !important;
+    width: 100% !important;
+    padding-top: 56.25% !important;   /* 16:9 intrinsic height */
+    height: auto !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  /* 3. Keep the iframe absolutely filling its wrapper (unchanged from global) */
+  .project-view-inner .video-wrap iframe,
+  .project-view-inner .video-wrap .project-video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    z-index: 1 !important;
+  }
+
+  /* 4. Force the description block into strict static document flow so it
+        renders entirely below the video — no position tricks, no z-index
+        collisions, no transforms that pull it up into the video's space. */
+  .project-view-desc {
+    position: static !important;
+    z-index: auto !important;
+    transform: none !important;
+    clear: both !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* 5. Remove the incorrect max-height that was set on the wrong selector. */
+  .project-view-video-wrap {
+    max-height: unset !important;
+  }
+
+}
