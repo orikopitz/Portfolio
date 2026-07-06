@@ -232,6 +232,7 @@ projectCards.forEach((card) => {
    --------------------------------------------------------------------------- */
 function openProjectView(card){
   savedHomeScrollY = window.scrollY;
+  history.pushState({ overlayActive: true }, '');
 
   const title   = card.dataset.title;
   const vimeoId = card.dataset.vimeo;
@@ -284,12 +285,13 @@ function closeProjectView(){
     .set(viewWipe, { pointerEvents: 'none' });
 }
 
-projectBackBtn.addEventListener('click', closeProjectView);
+projectBackBtn.addEventListener('click', () => history.back());
 
 /* ---------------------------------------------------------------------------
    8. SHOWREEL VIEW + LIGHTBOX
    --------------------------------------------------------------------------- */
 function openShowreel(){
+  history.pushState({ overlayActive: true }, '');
   showreelBg.innerHTML = '';
   showreelBg.appendChild(buildIframe({
     src: vimeoBackgroundUrl(MAIN_SHOWREEL_VIMEO_ID),
@@ -388,7 +390,7 @@ function closeLightbox(){
 }
 
 showreelNavBtn.addEventListener('click', openShowreel);
-showreelCloseBtn.addEventListener('click', closeShowreel);
+showreelCloseBtn.addEventListener('click', () => history.back());
 showreelPlayBtn.addEventListener('click', openLightbox);
 showreelScrollCueBtn.addEventListener('click', scrollToShowreelDetails);
 showreelBackToTopBtn.addEventListener('click', scrollToShowreelTop);
@@ -402,6 +404,7 @@ showreelLightbox.addEventListener('click', (e) => {
    9. INFO OVERLAY — clean slide-open panel with staggered text reveal
    --------------------------------------------------------------------------- */
 function openInfo(){
+  history.pushState({ overlayActive: true }, '');
   infoOverlay.classList.add('is-open');
   infoOverlay.scrollTop = 0; /* reset to top every time so content is never pre-scrolled */
   document.body.classList.add('lock-scroll');
@@ -444,7 +447,7 @@ function closeInfo(){
 }
 
 infoNavBtn.addEventListener('click', openInfo);
-infoCloseBtn.addEventListener('click', closeInfo);
+infoCloseBtn.addEventListener('click', () => history.back());
 
 /* ---------------------------------------------------------------------------
    10. BACK TO TOP — fades in once the Hero has scrolled past
@@ -479,7 +482,19 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ---------------------------------------------------------------------------
-   12. LOAD / RESIZE HOUSEKEEPING
+   12. BROWSER BACK BUTTON / SWIPE-BACK — History API popstate intercept
+       Mirrors Section 11 logic: whichever overlay is open gets closed;
+       if none are open the browser navigates away normally (no trapping).
+   --------------------------------------------------------------------------- */
+window.addEventListener('popstate', function() {
+  if      (projectView.classList.contains('is-open'))  closeProjectView();
+  else if (showreelView.classList.contains('is-open')) closeShowreel();
+  else if (infoOverlay.classList.contains('is-open'))  closeInfo();
+  // No overlay open → default browser behaviour (exit site)
+});
+
+/* ---------------------------------------------------------------------------
+   13. LOAD / RESIZE HOUSEKEEPING
    --------------------------------------------------------------------------- */
 window.addEventListener('load', () => {
   playHeroIntro();
